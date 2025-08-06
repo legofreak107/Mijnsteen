@@ -603,7 +603,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
             return;
 
         // scheduled tasks
-        this.scheduler.processTick();
+        //this.scheduler.processTick();
         if (isRemoved()) return;
 
         // Entity tick
@@ -618,10 +618,9 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
             update(time);
 
             ticks++;
-//            EventDispatcher.call(new EntityTickEvent(this));
 
             // remove expired effects
-            effectTick();
+            //effectTick();
         }
         // Scheduled synchronization
         if (vehicle == null && ticks >= nextSynchronizationTick) {
@@ -629,7 +628,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
             sendPacketToViewers(getVelocityPacket());
         }
         // End of tick scheduled tasks
-        this.scheduler.processTickEnd();
+//        this.scheduler.processTickEnd();
     }
 
     @ApiStatus.Internal

@@ -618,7 +618,7 @@ public class Entity implements Viewable, Tickable, Schedulable, Snapshotable, Ev
             update(time);
 
             ticks++;
-            EventDispatcher.call(new EntityTickEvent(this));
+//            EventDispatcher.call(new EntityTickEvent(this));
 
             // remove expired effects
             effectTick();

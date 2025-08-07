@@ -69,16 +69,14 @@ public final class Server {
     @ApiStatus.Internal
     public void start() {
         // Use named thread builders for logging
-        var readBuilder = Thread.ofVirtual().name("Ms-Socket-Reader-", 0);
-        var writeBuilder = Thread.ofVirtual().name("Ms-Socket-Writer-", 0);
         Thread.ofVirtual().name("Ms-Socket-Server").start(() -> {
             while (!stop) {
                 try {
                     final SocketChannel client = serverSocket.accept();
                     configureSocket(client);
                     AtomicReference<PlayerSocketConnection> reference = new AtomicReference<>(null);
-                    Thread readThread = readBuilder.unstarted(() -> playerReadLoop(reference.get()));
-                    Thread writeThread = writeBuilder.unstarted(() -> playerWriteLoop(reference.get()));
+                    Thread readThread = Thread.startVirtualThread(() -> playerReadLoop(reference.get()));
+                    Thread writeThread = Thread.startVirtualThread(() -> playerWriteLoop(reference.get()));
                     PlayerSocketConnection connection = new PlayerSocketConnection(client, client.getRemoteAddress(), readThread, writeThread);
                     reference.set(connection);
                     readThread.start();

@@ -211,13 +211,17 @@ public class PlayerSocketConnection extends PlayerConnection {
 
     @Override
     public void sendPacket(@NotNull SendablePacket packet) {
+        System.out.println(packet.getClass().getName());
         this.packetQueue.relaxedOffer(packet);
         unlockWriteThread();
     }
 
     @Override
     public void sendPackets(@NotNull Collection<SendablePacket> packets) {
-        for (SendablePacket packet : packets) this.packetQueue.relaxedOffer(packet);
+        for (SendablePacket packet : packets) {
+            System.out.println(packet.getClass().getName());
+            this.packetQueue.relaxedOffer(packet);
+        }
         unlockWriteThread();
     }
 

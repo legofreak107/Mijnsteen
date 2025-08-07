@@ -5,6 +5,7 @@ plugins {
 
     alias(libs.plugins.nmcp.aggregation)
 }
+
 sourceSets {
     main {
         java {

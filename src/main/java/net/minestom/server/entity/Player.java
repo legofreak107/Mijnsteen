@@ -136,7 +136,7 @@ public class Player extends LivingEntity implements CommandSender, HoverEventSou
     private static final int DEFAULT_SEA_LEVEL = 63;
 
     private long lastKeepAlive;
-    private volatile boolean answerKeepAlive;
+    private boolean answerKeepAlive;
 
     private final GameProfile gameProfile;
     private String username;
@@ -262,11 +262,6 @@ public class Player extends LivingEntity implements CommandSender, HoverEventSou
         // When in configuration state no metadata updates can be sent.
         metadata.setNotifyAboutChanges(false);
     }
-
-//    @Override
-//    public void tick(long time) {
-//        super.tick(time);
-//    }
 
     @ApiStatus.Internal
     public void setPendingOptions(@NotNull Instance pendingInstance, boolean hardcore) {

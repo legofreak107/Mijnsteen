@@ -42,10 +42,10 @@ public final class HandshakeListener {
             case STATUS -> {
             }
             case LOGIN -> {
-//                if (packet.protocolVersion() != MinecraftServer.PROTOCOL_VERSION) {
-//                    // Incorrect client version
-//                    connection.kick(INVALID_VERSION_TEXT);
-//                }
+                if (packet.protocolVersion() != MinecraftServer.PROTOCOL_VERSION) {
+                    // Incorrect client version
+                    connection.kick(INVALID_VERSION_TEXT);
+                }
 
                 // Bungee support (IP forwarding)
                 if (BungeeCordProxy.isEnabled() && connection instanceof PlayerSocketConnection socketConnection) {
